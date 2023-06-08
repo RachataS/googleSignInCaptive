@@ -8,7 +8,6 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\DomParser;
 
 class GoogleController extends Controller
 {
@@ -21,10 +20,7 @@ class GoogleController extends Controller
 
         $urlresponse = Http::get($redirectUrl);
         if ($urlresponse->ok()) {
-            $html = $urlresponse->body();
-            $dom = new DomParser($html);
-
-            info($dom);
+            info($urlresponse);
             return $urlresponse;
         }
         return redirect($redirectUrl);
