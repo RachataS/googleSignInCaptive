@@ -12,7 +12,10 @@ use Exception;
 class GoogleController extends Controller
 {
     public function googlepage(){
-        return socialite::driver('google')->redirect();
+        $googlelogin = socialite::driver('google')->redirect();
+        $redirectUrl = $googlelogin->getTargetUrl();
+        info($redirectUrl);
+        return response()->json($redirectUrl);
     }
 
     public function googlecallback(){
