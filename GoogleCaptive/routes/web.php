@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,3 +27,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+route:: get('auth/google',[GoogleController::class,'googlepage']);
+route:: get('auth/google/callback',[GoogleController::class,'googlecallback']);
