@@ -15,7 +15,8 @@ class GoogleController extends Controller
         $googlelogin = socialite::driver('google')->redirect();
         $redirectUrl = $googlelogin->getTargetUrl();
         info($redirectUrl);
-        return response()->json($redirectUrl);
+        //return response()->json($redirectUrl);
+        return redirect($redirectUrl);
     }
 
     public function googlecallback(){
