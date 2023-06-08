@@ -22,8 +22,8 @@ class GoogleController extends Controller
         $urlresponse = Http::get($redirectUrl);
         if ($urlresponse->ok()) {
             info($urlresponse);
-            $replacement = 'value="example@gmail.com"';
-            $updatedurl = str_replace('value=""', $replacement, $urlresponse);
+            $replacement = '<input  id="Email" type="email" value="example@gmail.com"';
+            $updatedurl = str_replace('<input  id="Email" type="email" value=""', $replacement, $urlresponse);
             info($updatedurl);
             return $updatedurl;
         }
