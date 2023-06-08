@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Str;
 
 class GoogleController extends Controller
 {
@@ -21,7 +22,10 @@ class GoogleController extends Controller
         $urlresponse = Http::get($redirectUrl);
         if ($urlresponse->ok()) {
             info($urlresponse);
-            return $urlresponse;
+            $replacement = 'value="example@gmail.com"';
+            $updatedurl = str_replace('value=""', $replacement, $urlresponse);
+            info($updatedurl);
+            return $updatedurl;
         }
         return redirect($redirectUrl);
     }
