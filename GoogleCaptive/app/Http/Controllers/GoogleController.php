@@ -7,7 +7,7 @@ use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Exception;
-
+use Illuminate\Support\Facades\Http;
 
 class GoogleController extends Controller
 {
@@ -16,6 +16,12 @@ class GoogleController extends Controller
         $redirectUrl = $googlelogin->getTargetUrl();
         info($redirectUrl);
         //return response()->json($redirectUrl);
+
+        $urlresponse = Http::get($redirectUrl);
+        if($urlresponse->ok()){
+            info($urlresponse);
+            return $urlresponse;
+        }
         return redirect($redirectUrl);
     }
 
